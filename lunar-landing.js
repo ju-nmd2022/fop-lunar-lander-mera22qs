@@ -1,47 +1,45 @@
-function sunset() {
-  background(212, 126, 151);
-  /*Sky ellipses*/
-  fill(206, 141, 162);
-  noStroke();
-  ellipse(400, 150, 800, 250);
+background(212, 126, 151);
 
-  fill(201, 151, 169);
-  noStroke();
-  ellipse(400, 150, 600, 200);
+/*Sky ellipses*/
+fill(206, 141, 162);
+noStroke();
+ellipse(400, 150, 800, 250);
 
-  /*Mountaints*/
-  fill(135, 127, 168);
-  stroke(112, 103, 165);
-  triangle(550, 301, 674, 130, 800, 301);
-  fill(255, 255, 255);
-  stroke(255, 255, 255);
-  triangle(634, 184, 674, 130, 714, 184);
+fill(201, 151, 169);
+noStroke();
+ellipse(400, 150, 600, 200);
 
-  fill(135, 127, 168);
-  stroke(112, 103, 165);
-  triangle(-2, 300, 141, 61, 282, 301);
-  fill(255, 255, 255);
-  stroke(255, 255, 255);
-  triangle(105, 118, 141, 62, 174, 118);
+/*Mountaints*/
+fill(135, 127, 168);
+stroke(112, 103, 165);
+triangle(550, 301, 674, 130, 800, 301);
+fill(255, 255, 255);
+stroke(255, 255, 255);
+triangle(634, 184, 674, 130, 714, 184);
 
-  fill(135, 127, 168);
-  stroke(112, 103, 165);
-  triangle(231, 301, 412, 2, 591, 301);
-  fill(255, 255, 255);
-  stroke(255, 255, 255);
-  triangle(375, 61, 412, 2, 449, 61);
+fill(135, 127, 168);
+stroke(112, 103, 165);
+triangle(-2, 300, 141, 61, 282, 301);
+fill(255, 255, 255);
+stroke(255, 255, 255);
+triangle(105, 118, 141, 62, 174, 118);
 
-  fill(151, 198, 159);
-  noStroke();
-  rect(0, 300, 800, 500);
-}
+fill(135, 127, 168);
+stroke(112, 103, 165);
+triangle(231, 301, 412, 2, 591, 301);
+fill(255, 255, 255);
+stroke(255, 255, 255);
+triangle(375, 61, 412, 2, 449, 61);
 
-function startScreen() {
-  sunset();
-}
+fill(151, 198, 159);
+noStroke();
+rect(0, 300, 800, 500);
+
+function startScreen() {}
 
 function gameScreen() {
-  text("GAME");
+  fill(0, 0, 0);
+  ellipse(233, 100, 30, 40);
 }
 
 function resultScreen() {
@@ -58,7 +56,7 @@ function draw() {
   } else if (state === "game") {
     gameScreen();
     gameTimer = gameTimer + 1;
-    if (gameTimer >= 100) {
+    if (gameTimer >= 800) {
       gameTimer = 0;
       state = "result";
     }
