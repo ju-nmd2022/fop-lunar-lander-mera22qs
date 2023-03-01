@@ -1,4 +1,17 @@
-function startScreen() {
+function setup() {
+  createCanvas(800, 500);
+}
+
+function bunny(x, y, rotation) {
+  push();
+  translate(x, y);
+  rotate(rotation);
+  fill(232, 232, 232);
+  rect(50, 30, 50, 50, 10);
+  pop();
+}
+
+function nature() {
   background(212, 126, 151);
 
   /*Sky ellipses*/
@@ -37,80 +50,29 @@ function startScreen() {
   rect(0, 300, 800, 500);
 }
 
-function gameScreen() {
-  
-  /*Trampoline */
+function trampoline(x, h) {
   fill(56, 56, 56);
   stroke(40, 40, 40);
   strokeWeight(3);
-  rect(272, 395, 10, 40);
-  rect(370, 395, 10, 50);
-  rect(460, 395, 10, 40);
-  ellipse(371, 395, 200, 30);
-}
 
-function resultScreen() {
-  text("Result");
-}
+  push();
+  const x = h / 3;
+  const y = height - 50;
+  rect(x - 80, y - 100, 10, 40);
+  rect(x + 105, y - 100, 10, 40);
+  rect(x + 10, y - 90, 10, 40);
 
-let state = "start";
-let gameTimer = 0;
+  push();
+  translate(x, y);
+  ellipse(0, 0, 200, 30);
+  pop();
+}
+let trampolineX = 600;
 
 function draw() {
-  if (state === "start") {
-    startScreen();
-  } else if (state === "game") {
-    gameScreen();
-    gameTimer = gameTimer + 1;
-    if (gameTimer >= 100) {
-      gameTimer = 0;
-      state = "result";
-    }
-  } else if (state === "result") {
-    resultScreen();
-  }
-}
+  nature();
+  bunny();
+  trampoline(trampolineX, 100);
 
-function mouseClicked() {
-  if (state === "start") {
-    state = "game";
-  } else if (state === "result") {
-    state = "game";
-  }
+  trampolineX = trampolineX - 1;
 }
-
-function bunny(x, y, rotation) {
-    push();
-    translate(x, y);
-    rotate(rotation);
-    fill(232, 232, 232);
-    rect(-50, -30, 50, 50, 10);
-    pop();
-  }
-  
-  let x = 100;
-  let y = 100;
-  let rotation = 0;
-  let speed = 0;
-  
-  function draw() {
-    background(212, 126, 151);
-    bunny(x, y, rotation);
-  
-    x = x + Math.cos(rotation) * speed;
-    y = y + Math.sin(rotation) * speed;
-  
-    if (keyIsDown(38)) {
-      speed = 5;
-    } else if (keyIsDown(40)) {
-      speed = -5;
-    } else {
-      speed = 0;
-    }
-    if (keyIsDown(37)) {
-      rotation = rotation - 0.05;
-    } else if (keyIsDown(39)) {
-      rotation = rotation + 0.05;
-    }
-  }*/
-/*following lines of code () code was inspired by the video lecture move a car with the keyboard by Garrit
