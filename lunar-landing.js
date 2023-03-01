@@ -1,3 +1,5 @@
+function startScreen() {}
+
 background(212, 126, 151);
 
 /*Sky ellipses*/
@@ -35,15 +37,18 @@ fill(151, 198, 159);
 noStroke();
 rect(0, 300, 800, 500);
 
-function startScreen() {}
+function gameScreen() {}
 
-function gameScreen() {
-  fill(0, 0, 0);
-  ellipse(233, 100, 30, 40);
-}
+/*Trampoline */
+fill(56, 56, 56);
+stroke(40, 40, 40);
+strokeWeight(3);
+rect(272, 395, 10, 40);
+rect(370, 395, 10, 50);
+rect(460, 395, 10, 40);
+ellipse(371, 395, 200, 30);
 
 function resultScreen() {
-  background(127, 185, 211);
   text("Result");
 }
 
