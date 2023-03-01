@@ -2,23 +2,9 @@ function setup() {
   createCanvas(800, 500);
 }
 
-function bunny(x, y, rotation) {
-  push();
-  translate(x, y);
-  rotate(rotation);
-  speed(speed);
-  fill(232, 232, 232);
-  rect(50, 30, 50, 50, 10);
-  pop();
-
-  let x = 100;
-  let y = 100;
-  let rotation = 0;
-  let speed = 0;
-}
-
 function nature() {
   background(212, 126, 151);
+  push();
 
   /*Sky ellipses*/
   fill(206, 141, 162);
@@ -29,7 +15,7 @@ function nature() {
   noStroke();
   ellipse(400, 150, 600, 200);
 
-  /*Mountaints*/
+  /*Mountains*/
   fill(135, 127, 168);
   stroke(112, 103, 165);
   triangle(550, 301, 674, 130, 800, 301);
@@ -54,19 +40,60 @@ function nature() {
   fill(151, 198, 159);
   noStroke();
   rect(0, 300, 800, 500);
+
+  pop();
 }
 
-function trampoline() {
+let trampolineX = 300;
+
+function trampoline(x, y) {
   fill(56, 56, 56);
   stroke(40, 40, 40);
   strokeWeight(3);
-  rect(272, 395, 10, 40);
-  rect(370, 395, 10, 50);
-  rect(460, 395, 10, 40);
-  ellipse(371, 395, 200, 30);
+
+  rect(x - 75, 400, 10, 40);
+  rect(x + 65, 400, 10, 40);
+  rect(x - 5, 400, 10, 40);
+  ellipse(x, 400, 150, 20);
 }
+function bunny(x, y, rotation) {
+  push();
+  translate(x, y);
+  rotate(rotation);
+  fill(232, 232, 232);
+  rect(-50, -30, 50, 50, 10);
+  pop();
+}
+
+let x = 100;
+let y = 100;
+let rotation = 0;
+let speed = 0;
+
+let bunnyY = 100;
+let velocity = 1;
+let acceleration = 0.2;
+
 function draw() {
   nature();
-  bunny(x, y, rotation);
-  trampoilne();
+  trampoline(trampolineX);
+  bunny(x, bunnyY, rotation);
+
+  trampolineX = trampolineX + 3;
+
+  x = x + Math.cos(rotation) * speed;
+  bunnyY = bunnyY + Math.sin(rotation) * speed;
+
+  if (keyIsDown(38)) {
+    speed = 5;
+  } else if (keyIsDown(40)) {
+    speed = -5;
+  } else {
+    speed = 0;
+  }
+  if (keyIsDown(37)) {
+    rotation = rotation - 0.05;
+  } else if (keyIsDown(39)) {
+    rotation = rotation + 0.05;
+  }
 }
