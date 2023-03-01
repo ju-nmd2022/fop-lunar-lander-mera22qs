@@ -38,6 +38,7 @@ function startScreen() {
 }
 
 function gameScreen() {
+  
   /*Trampoline */
   fill(56, 56, 56);
   stroke(40, 40, 40);
@@ -61,7 +62,7 @@ function draw() {
   } else if (state === "game") {
     gameScreen();
     gameTimer = gameTimer + 1;
-    if (gameTimer >= 800) {
+    if (gameTimer >= 100) {
       gameTimer = 0;
       state = "result";
     }
@@ -78,7 +79,6 @@ function mouseClicked() {
   }
 }
 
-/*following lines of code () code was inspired by the video lecture move a car with the keyboard by Garrit
 function bunny(x, y, rotation) {
     push();
     translate(x, y);
@@ -113,3 +113,4 @@ function bunny(x, y, rotation) {
       rotation = rotation + 0.05;
     }
   }*/
+/*following lines of code () code was inspired by the video lecture move a car with the keyboard by Garrit
