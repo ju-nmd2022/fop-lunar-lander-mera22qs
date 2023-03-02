@@ -56,12 +56,23 @@ function trampoline(x, y) {
   rect(x - 5, 400, 10, 40);
   ellipse(x, 400, 150, 20);
 }
+
 function bunny(x, y, rotation) {
+  /*body*/
   push();
   translate(x, y);
   rotate(rotation);
   fill(232, 232, 232);
-  rect(-50, -30, 50, 50, 10);
+  ellipse(x - 30, y + 30, 80, 50);
+  ellipse(x + 20, y - 35, 20, 50);
+  ellipse(x - 15, y - 35, 20, 50);
+  ellipse(x, y, 70, 40, 40);
+  ellipse(x - 70, y + 30, 30, 20);
+
+  fill(0, 0, 0);
+  ellipse(x - 15, y, 5, 10);
+  ellipse(x + 15, y, 5, 10);
+  triangle(x + 3, y + 10, x - 3, y + 10, x, y + 5);
   pop();
 }
 
