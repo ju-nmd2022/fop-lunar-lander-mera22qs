@@ -46,7 +46,7 @@ function nature() {
 
 let trampolineX = 300;
 
-function trampoline(x, y) {
+function trampoline(x) {
   fill(56, 56, 56);
   stroke(40, 40, 40);
   strokeWeight(3);
@@ -85,7 +85,11 @@ let bunnyY = 100;
 let velocity = 1;
 let acceleration = 0.2;
 
-function draw() {
+function startScr() {
+  nature();
+}
+
+function gameScr() {
   nature();
   trampoline(trampolineX);
   bunny(x, bunnyY, rotation);
@@ -106,5 +110,22 @@ function draw() {
     rotation = rotation - 0.05;
   } else if (keyIsDown(39)) {
     rotation = rotation + 0.05;
+  }
+}
+
+function resultScr() {
+  nature();
+  text("FINISH, 200, 200, 200");
+}
+
+let state = "";
+
+function draw() {
+  if (state === "start") {
+    startScr();
+  } else if (state === "game") {
+    gameScr();
+  } else if (state === "result") {
+    resultScr();
   }
 }
