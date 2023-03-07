@@ -47,11 +47,26 @@ function nature() {
 function butn() {
   fill(255, 255, 0);
   rect(x + 400, y + 200, 70, 30, 29);
-
   fill(0, 0, 0);
-  textSize(12);
-  text("Play", x + 420, y + 220);
-}
+  textSize(15);
+  text(
+    "Oh no! The bunny jumped to high! Help it land safely on the trampoline; but remember, you only have 20 seconds...and no watch.",
+    x + 120,
+    y + 80,
+    x + 270
+  );
+  text(
+    "Use the arrow keys to move the bunny in all directions.",
+    x + 120,
+    y + 150,
+    x + 270
+  );
+  text(
+    "Let's go",
+    x + 120,
+    y + 150,
+    x + 270
+  );
 
 function infoBox() {
   fill(255, 255, 255);
