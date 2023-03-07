@@ -5,16 +5,16 @@ function setup() {
 function nature() {
   background(212, 126, 151);
   push();
-
+  
   /*Sky ellipses*/
   fill(206, 141, 162);
   noStroke();
   ellipse(400, 150, 800, 250);
-
+  
   fill(201, 151, 169);
   noStroke();
   ellipse(400, 150, 600, 200);
-
+  
   /*Mountains*/
   fill(135, 127, 168);
   stroke(112, 103, 165);
@@ -22,48 +22,57 @@ function nature() {
   fill(255, 255, 255);
   stroke(255, 255, 255);
   triangle(634, 184, 674, 130, 714, 184);
-
+  
   fill(135, 127, 168);
   stroke(112, 103, 165);
   triangle(-2, 300, 141, 61, 282, 301);
   fill(255, 255, 255);
   stroke(255, 255, 255);
   triangle(105, 118, 141, 62, 174, 118);
-
+  
   fill(135, 127, 168);
   stroke(112, 103, 165);
   triangle(231, 301, 412, 2, 591, 301);
   fill(255, 255, 255);
   stroke(255, 255, 255);
   triangle(375, 61, 412, 2, 449, 61);
-
+  
   fill(151, 198, 159);
   noStroke();
   rect(0, 300, 800, 500);
-
+  
   pop();
 }
 
-let trampolineX = 100;
-let trampolineY = 100;
+let trampolineX = 300;
+let trampolineY = 400;
 
-function trampoline(x, y) {
+function trampoline(trampolineX, trampolineY) {
+  push();
+  translate(trampolineX, trampolineY);
   fill(56, 56, 56);
   stroke(40, 40, 40);
   strokeWeight(3);
-
-  rect(x - 75, y + 300, 10, 40);
-  rect(x - 5, y + 300, 10, 40);
-  rect(x + 65, y + 300, 10, 40);
-  ellipse(x, y + 300, 150, 20);
-
-
+  
+  rect(x - 75, y, 10, 40);
+  rect(x - 5, y, 10, 40);
+  rect(x + 65, y, 10, 40);
+  ellipse(x, y, 150, 20);
+pop();
+  
 }
 
-function bunny(x, y, rotation) {
+let bunnyX = 100;
+let bunnyY = 100;
+let velocity = 1;
+let acceleration = 0.2;
+let rotation = 0;
+let speed = 0;
+
+function bunny(bunnyX, bunnyY, rotation) {
   /*body*/
   push();
-  translate(x, y);
+  translate(bunnyX, bunnyY);
   rotate(rotation);
   fill(232, 232, 232);
   ellipse(x - 30, y + 30, 80, 50);
@@ -71,22 +80,16 @@ function bunny(x, y, rotation) {
   ellipse(x - 15, y - 35, 20, 50);
   ellipse(x, y, 70, 40, 40);
   ellipse(x - 70, y + 30, 30, 20);
-
+  
   fill(0, 0, 0);
   ellipse(x - 15, y, 5, 10);
   ellipse(x + 15, y, 5, 10);
   triangle(x + 3, y + 10, x - 3, y + 10, x, y + 5);
   pop();
+  
+  bunnyY = bunnyY - 3;
 }
 
-let x = 100;
-let y = 100;
-let rotation = 0;
-let speed = 0;
-
-let bunnyX = 100;
-let velocity = 1;
-let acceleration = 0.2;
 
 function butn() {
   fill(255, 255, 0);
@@ -174,8 +177,6 @@ function gameScr() {
   }
 
   if (
-    bunnyY >  &&
-    bunnyY <  390 + 10
   ) {
     state = "result";
   }
@@ -183,6 +184,12 @@ function gameScr() {
 
 function resultScr() {
   nature();
+
+  if(----) {
+    win();
+  } else {
+    fail();
+  }
 }
 
 let state = "start";
