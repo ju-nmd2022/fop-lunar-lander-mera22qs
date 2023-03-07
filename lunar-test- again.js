@@ -1,31 +1,60 @@
 function setup() {
   createCanvas(800, 500);
 }
+let goal = 400;
+let speed = 2;
+let boxX = 10;
+let boxY = 10;
+let state = "start";
 
-function rectangle(x, y) {
+function loft() {
   fill(255, 255, 255);
-  rect(100, 100, 100, 10);
+  rect(100, 200, 100, 10);
 }
 
-function circle(x, y) {
+function box(boxX, boxY) {
+  push();
+  translate(boxX, boxY);
   fill(255, 220, 255);
-  ellipse(x, y, 200);
+  rect(boxX, boxY, 100);
+  pop();
 }
-const speed = 5;
-let x = 200;
-let y = 200;
+
+function startScr() {
+  clear();
+  settings();
+  loft();
+}
+
+function settings() {
+  loft();
+  box(boxX, boxY);
+  boxY = boxY + speed;
+
+  if (keyIsDown(39)) {
+    boxX = boxX + 5;
+  } else if (keyIsDown(37)) {
+    boxX = boxX - 5;
+  }
+  if (keyIsDown(38)) {
+    boxY = boxY - 10;
+  } else if (keyIsDown(40)) {
+    boxY = boxY + 5;
+  }
+}
+
+function failScr() {}
+
+function winScr() {}
 
 function draw() {
-  clear();
-  circle(x, y);
-  if (keyIsDown(39)) {
-    x = x + speed;
-  } else if (keyIsDown(37)) {
-    x = x - speed;
-  }
-  if (keyIsDown(40)) {
-    y = y + speed;
-  } else if (keyIsDown(38)) {
-    y = y - speed;
+  if (state === "start") {
+    startScr();
+  } else if (state === "game") {
+    settings();
+  } else if (state === "win") {
+    winScr();
+  } else if (state === "fail") {
+    failScr();
   }
 }
