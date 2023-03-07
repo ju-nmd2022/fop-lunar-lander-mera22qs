@@ -1,6 +1,7 @@
 function setup() {
   createCanvas(800, 500);
 }
+/*Background */
 function nature() {
   background(212, 126, 151);
   push();
@@ -35,73 +36,91 @@ function nature() {
   rect(0, 300, 800, 500);
   pop();
 }
-function butn() {
-  fill(255, 255, 0);
-  rect(x + 400, y + 200, 70, 30, 29);
+/*Sticker of approval */
+function happyFace() {
+  fill(0, 199, 20);
+  ellipse(570, 255, 70, 70);
+  fill(0, 0, 0);
+  ellipse(580, 250, 10, 10);
+  ellipse(550, 250, 10, 10);
+
+  fill(0, 0, 0);
+  ellipse(560, 270, 20, 10);
+  fill(0, 199, 20);
+  noStroke();
+  ellipse(560, 266, 20, 10);
+}
+
+/*Sticker of disappointment */
+function sadFace() {
+  fill(255, 100, 100);
+  ellipse(570, 255, 70, 70);
+  fill(0, 0, 0);
+  ellipse(580, 250, 10, 10);
+  ellipse(550, 250, 10, 10);
+  rect(560, 270, 20, 1);
+}
+/*Information for the winner */
+function infoBoxWin() {
+  fill(255, 255, 255);
+  rect(250, 100 + 50, 400, 200, 20);
+
+  fill(0, 0, 0);
+  textSize(15);
+  text(
+    "Great job! The bunny is safe and the world is at peace!",
+    280,
+    180,
+    330
+  );
+  text("Press play to restart the game", 280, 250, 330);
+}
+
+/*Information for the one who failed */
+function infoBoxFail() {
+  fill(255, 255, 255);
+  rect(250, 100 + 50, 400, 200, 20);
+
+  fill(0, 0, 0);
+  textSize(15);
+  text("The bunny tripped and got hurt, better luck next time.", 280, 180, 330);
+  text("Press play and try again!", 280, 250, 330);
+}
+
+/*Game Instructions for the player */
+function infoBox() {
+  fill(255, 255, 255);
+  rect(250, 100 + 50, 400, 200, 20);
+
   fill(0, 0, 0);
   textSize(15);
   text(
     "Oh no! The bunny jumped to high! Help it land safely on the trampoline; but remember, you only have 20 seconds...and no watch.",
-    x + 120,
-    y + 80,
-    x + 270
+    280,
+    180,
+    330
   );
   text(
     "Use the arrow keys to move the bunny in all directions. Good Luck!",
-    x + 120,
-    y + 150,
-    x + 270
+    280,
+    250,
+    330
   );
+}
+
+/*Press to play the game*/
+function butn() {
+  fill(11, 138, 60);
+  rect(540, 300, 70, 30, 29);
+
   fill(0, 0, 0);
   textSize(15);
-  text("Play", x + 420, y + 220);
-}
-function infoBox() {
-  fill(255, 255, 255);
-  rect(x + 100, y + 50, 400, 200, 20);
-}
-let trampolineX = 300;
-function trampoline(x) {
-  fill(56, 56, 56);
-  stroke(40, 40, 40);
-  strokeWeight(3);
-  rect(x - 75, 400, 10, 40);
-  rect(x + 65, 400, 10, 40);
-  rect(x - 5, 400, 10, 40);
-  ellipse(x, 400, 150, 20);
-}
-function bunny(x, y, rotation) {
-  /*body*/
-  push();
-  translate(x, y);
-  rotate(rotation);
-  fill(232, 232, 232);
-  ellipse(x - 30, y + 30, 80, 50);
-  ellipse(x + 20, y - 35, 20, 50);
-  ellipse(x - 15, y - 35, 20, 50);
-  ellipse(x, y, 70, 40, 40);
-  ellipse(x - 70, y + 30, 30, 20);
-  fill(0, 0, 0);
-  ellipse(x - 15, y, 5, 10);
-  ellipse(x + 15, y, 5, 10);
-  triangle(x + 3, y + 10, x - 3, y + 10, x, y + 5);
-  pop();
-}
-let x = 100;
-let y = 100;
-let rotation = 0;
-let speed = 0;
-let bunnyY = 100;
-let velocity = 1;
-let acceleration = 0.2;
-function startScr() {
-  nature();
-  infoBox();
-  butn();
+  text("Play", 560, 320);
+
   if (
     mouseIsPressed &&
-    mouseX > 500 &&
-    mouseX < 500 + 70 &&
+    mouseX > 540 &&
+    mouseX < 540 + 70 &&
     mouseY > 300 &&
     mouseY < 300 + 30
   ) {
@@ -109,41 +128,110 @@ function startScr() {
     state = "game";
   }
 }
+
+/*Start Screen*/
+function startScr() {
+  nature();
+  infoBox();
+  butn();
+}
+/*trampoline / goal*/
+function trampoline() {
+  fill(56, 56, 56);
+  stroke(40, 40, 40);
+  strokeWeight(3);
+  rect(700 - 75, 400, 10, 40);
+  rect(700 + 65, 400, 10, 40);
+  rect(700 - 5, 400, 10, 40);
+  ellipse(700, 400, 150, 20);
+}
+
+let speed = 2;
+let bunnyX = 10;
+let bunnyY = 0;
+
+/*Character*/
+function bunny(bunnyX, bunnyY) {
+  /*body*/
+  push();
+  translate(bunnyX, bunnyY);
+  fill(232, 232, 232);
+  ellipse(bunnyX + 110, bunnyY + 25, 20, 50);
+  ellipse(bunnyX + 70, bunnyY + 25, 20, 50);
+  ellipse(bunnyX + 60, bunnyY + 100, 80, 70, 70);
+  ellipse(bunnyX + 90, bunnyY + 60, 80, 50);
+  ellipse(bunnyX + 20, bunnyY + 100, 30, 20);
+
+  /*face*/
+  fill(0, 0, 0);
+  ellipse(bunnyX + 110, bunnyY + 60, 5, 10);
+  ellipse(bunnyX + 78, bunnyY + 60, 5, 10);
+  triangle(
+    bunnyX + 100,
+    bunnyY + 70,
+    bunnyX + 90,
+    bunnyY + 70,
+    bunnyX + 95,
+    bunnyY + 65
+  );
+  pop();
+}
+/*Game Screen*/
 function gameScr() {
+  clear();
   nature();
-  trampoline(trampolineX);
-  bunny(x, bunnyY, rotation);
-  trampolineX = trampolineX + 3;
-  x = x + Math.cos(rotation) * speed;
-  bunnyY = bunnyY + Math.sin(rotation) * speed;
+  trampoline();
+  bunny(bunnyX, bunnyY);
+
+  bunnyY = bunnyY + speed;
+
+  if (keyIsDown(39)) {
+    bunnyX = bunnyX + 5;
+  } else if (keyIsDown(37)) {
+    bunnyX = bunnyX - 5;
+  }
   if (keyIsDown(38)) {
-    speed = 5;
+    bunnyY = bunnyY - 10;
   } else if (keyIsDown(40)) {
-    speed = -5;
-  } else {
-    speed = 0;
+    bunnyY = bunnyY + 5;
   }
-  if (keyIsDown(37)) {
-    rotation = rotation - 0.05;
-  } else if (keyIsDown(39)) {
-    rotation = rotation + 0.05;
-  }
+  /*This part is hard
+  if (bunnyY >= 380) {
+    if (bunnyX >= 600 && bunnyX <= 600 + 100) {
+      state = "win";
+      console.log("You won");
+    } else if (bunnyX <= 5 && bunnyX >= 0 - 5) {
+      state = "fail";
+      console.log("you lose");
+    }
+    
+  }*/
 }
-function resultScr() {
+/*Fail Screen*/
+function failScr() {
   nature();
+  infoBoxFail();
+  butn();
+  sadFace();
 }
+/*Winnin Screen*/
+function winScr() {
+  nature();
+  infoBoxWin();
+  butn();
+  happyFace();
+}
+
 let state = "start";
+
 function draw() {
   if (state === "start") {
     startScr();
   } else if (state === "game") {
     gameScr();
-  } else if (state === "result") {
-    resultScr();
-  }
-}
-function mouseClicked() {
-  if (state === "result") {
-    state = "game";
+  } else if (state === "win") {
+    winScr();
+  } else if (state === "fail") {
+    failScr();
   }
 }
