@@ -118,9 +118,21 @@ function resultScr() {
   text("FINISH, 200, 200, 200");
 }
 
-let state = "";
+let state = "start";
+
+function mouseClicked() {
+  if (state === "start") {
+    state = "game";
+  } else if (state === "game") {
+    state = "result";
+  } else if (state === "result") {
+    state = "game";
+  }
+}
 
 function draw() {
+  mouseClicked();
+
   if (state === "start") {
     startScr();
   } else if (state === "game") {
