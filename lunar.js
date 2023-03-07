@@ -56,17 +56,16 @@ function butn() {
     x + 270
   );
   text(
-    "Use the arrow keys to move the bunny in all directions.",
+    "Use the arrow keys to move the bunny in all directions. Good Luck!",
     x + 120,
     y + 150,
     x + 270
   );
-  text(
-    "Let's go",
-    x + 120,
-    y + 150,
-    x + 270
-  );
+
+  fill(0, 0, 0);
+  textSize(15);
+  text("Play", x + 420, y + 220);
+}
 
 function infoBox() {
   fill(255, 255, 255);
@@ -118,8 +117,17 @@ function startScr() {
   nature();
   infoBox();
   butn();
-}
 
+  if (
+    mouseIsPressed &&
+    mouseX > 500 &&
+    mouseX < 500 + 70 &&
+    mouseY > 300 &&
+    mouseY < 300 + 30
+  ) {
+    console.log("Mouse is pressed");
+  }
+}
 function gameScr() {
   nature();
   trampoline(trampolineX);
@@ -161,11 +169,7 @@ function draw() {
 }
 
 function mouseClicked() {
-  if (state === "start") {
-    state = "game";
-  } else if (state === "game") {
-    state = "result";
-  } else if (state === "result") {
+  if (state === "result") {
     state = "game";
   }
 }
