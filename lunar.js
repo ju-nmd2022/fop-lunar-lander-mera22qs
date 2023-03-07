@@ -44,6 +44,20 @@ function nature() {
   pop();
 }
 
+function butn() {
+  fill(255, 255, 0);
+  rect(x + 400, y + 200, 70, 30, 29);
+
+  fill(0, 0, 0);
+  textSize(12);
+  text("Play", x + 420, y + 220);
+}
+
+function infoBox() {
+  fill(255, 255, 255);
+  rect(x + 100, y + 50, 400, 200, 20);
+}
+
 let trampolineX = 300;
 
 function trampoline(x) {
@@ -87,6 +101,8 @@ let acceleration = 0.2;
 
 function startScr() {
   nature();
+  infoBox();
+  butn();
 }
 
 function gameScr() {
@@ -115,10 +131,19 @@ function gameScr() {
 
 function resultScr() {
   nature();
-  text("FINISH, 200, 200, 200");
 }
 
 let state = "start";
+
+function draw() {
+  if (state === "start") {
+    startScr();
+  } else if (state === "game") {
+    gameScr();
+  } else if (state === "result") {
+    resultScr();
+  }
+}
 
 function mouseClicked() {
   if (state === "start") {
@@ -127,17 +152,5 @@ function mouseClicked() {
     state = "result";
   } else if (state === "result") {
     state = "game";
-  }
-}
-
-function draw() {
-  mouseClicked();
-
-  if (state === "start") {
-    startScr();
-  } else if (state === "game") {
-    gameScr();
-  } else if (state === "result") {
-    resultScr();
   }
 }
