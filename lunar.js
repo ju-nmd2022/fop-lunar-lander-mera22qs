@@ -45,19 +45,21 @@ function nature() {
 }
 
 let trampolineX = 100;
+let trampolineY = 100;
 
-function trampoline(x) {
+function trampoline(x, y) {
   fill(56, 56, 56);
   stroke(40, 40, 40);
   strokeWeight(3);
 
-  rect(x - 75, 400, 10, 40);
-  rect(x + 65, 400, 10, 40);
-  rect(x - 5, 400, 10, 40);
-  ellipse(x, 400, 150, 20);
+  rect(x - 75, y + 300, 10, 40);
+  rect(x - 5, y + 300, 10, 40);
+  rect(x + 65, y + 300, 10, 40);
+  ellipse(x, y + 300, 150, 20);
 
-  trampolineX = trampolineX + 3;
+
 }
+
 function bunny(x, y, rotation) {
   /*body*/
   push();
@@ -82,7 +84,7 @@ let y = 100;
 let rotation = 0;
 let speed = 0;
 
-let bunnyY = 100;
+let bunnyX = 100;
 let velocity = 1;
 let acceleration = 0.2;
 
@@ -114,6 +116,26 @@ function infoBox() {
   );
 }
 
+function fail() {
+  fill(255, 0, 0);
+  rect(x + 100, y + 50, 400, 200, 20);
+  fill(0, 0, 0);
+  textSize(15);
+  text(
+    "You were not careful enough; the bunny got hurt. Try again.",
+    x + 120,
+    y + 80,
+    x + 270
+  );
+}
+function win() {
+  fill(0, 255, 0);
+  rect(x + 100, y + 50, 400, 200, 20);
+  fill(0, 0, 0);
+  textSize(15);
+  text("You made it; the bunny is safe!", x + 120, y + 80, x + 270);
+}
+
 function startScr() {
   nature();
   infoBox();
@@ -132,8 +154,8 @@ function startScr() {
 
 function gameScr() {
   nature();
-  trampoline(trampolineX);
-  bunny(x, bunnyY, rotation);
+  trampoline(trampolineX, trampolineY);
+  bunny(bunnyX, bunnyY, rotation);
 
   x = x + Math.cos(rotation) * speed;
   bunnyY = bunnyY + Math.sin(rotation) * speed;
@@ -141,14 +163,21 @@ function gameScr() {
   if (keyIsDown(38)) {
     speed = 5;
   } else if (keyIsDown(40)) {
-    speed = -5;
+    speed = -5; 
   } else {
-    speed = 0;
+    speed = 0; 
   }
   if (keyIsDown(37)) {
     rotation = rotation - 0.05;
   } else if (keyIsDown(39)) {
     rotation = rotation + 0.05;
+  }
+
+  if (
+    bunnyY >  &&
+    bunnyY <  390 + 10
+  ) {
+    state = "result";
   }
 }
 
