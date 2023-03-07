@@ -95,7 +95,7 @@ function infoBox() {
   fill(0, 0, 0);
   textSize(15);
   text(
-    "Oh no! The bunny jumped to high! Help it land safely on the trampoline; but remember, you only have 20 seconds...and no watch.",
+    "Oh no! The bunny jumped to high! Help it land safely on the trampoline.",
     280,
     180,
     330
