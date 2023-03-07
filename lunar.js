@@ -44,35 +44,7 @@ function nature() {
   pop();
 }
 
-function butn() {
-  fill(255, 255, 0);
-  rect(x + 400, y + 200, 70, 30, 29);
-  fill(0, 0, 0);
-  textSize(15);
-  text(
-    "Oh no! The bunny jumped to high! Help it land safely on the trampoline; but remember, you only have 20 seconds...and no watch.",
-    x + 120,
-    y + 80,
-    x + 270
-  );
-  text(
-    "Use the arrow keys to move the bunny in all directions. Good Luck!",
-    x + 120,
-    y + 150,
-    x + 270
-  );
-
-  fill(0, 0, 0);
-  textSize(15);
-  text("Play", x + 420, y + 220);
-}
-
-function infoBox() {
-  fill(255, 255, 255);
-  rect(x + 100, y + 50, 400, 200, 20);
-}
-
-let trampolineX = 300;
+let trampolineX = 100;
 
 function trampoline(x) {
   fill(56, 56, 56);
@@ -83,8 +55,9 @@ function trampoline(x) {
   rect(x + 65, 400, 10, 40);
   rect(x - 5, 400, 10, 40);
   ellipse(x, 400, 150, 20);
-}
 
+  trampolineX = trampolineX + 3;
+}
 function bunny(x, y, rotation) {
   /*body*/
   push();
@@ -113,6 +86,34 @@ let bunnyY = 100;
 let velocity = 1;
 let acceleration = 0.2;
 
+function butn() {
+  fill(255, 255, 0);
+  rect(x + 400, y + 200, 70, 30, 29);
+
+  fill(0, 0, 0);
+  textSize(15);
+  text("Play", x + 420, y + 220);
+}
+
+function infoBox() {
+  fill(255, 255, 255);
+  rect(x + 100, y + 50, 400, 200, 20);
+  fill(0, 0, 0);
+  textSize(15);
+  text(
+    "Oh no! The bunny jumped to high! Help it land safely on the trampoline; but remember, you only have 20 seconds...and no watch.",
+    x + 120,
+    y + 80,
+    x + 270
+  );
+  text(
+    "Use the arrow keys to move the bunny in all directions. Good Luck!",
+    x + 120,
+    y + 150,
+    x + 270
+  );
+}
+
 function startScr() {
   nature();
   infoBox();
@@ -128,12 +129,11 @@ function startScr() {
     state = "game";
   }
 }
+
 function gameScr() {
   nature();
   trampoline(trampolineX);
   bunny(x, bunnyY, rotation);
-
-  trampolineX = trampolineX + 3;
 
   x = x + Math.cos(rotation) * speed;
   bunnyY = bunnyY + Math.sin(rotation) * speed;
