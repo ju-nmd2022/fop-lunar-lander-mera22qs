@@ -125,7 +125,7 @@ function startScr() {
     mouseY > 300 &&
     mouseY < 300 + 30
   ) {
-    console.log("Mouse is pressed");
+    state = "game";
   }
 }
 function gameScr() {
