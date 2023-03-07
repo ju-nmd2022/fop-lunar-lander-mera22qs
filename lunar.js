@@ -44,8 +44,6 @@ function nature() {
   pop();
 }
 
-let trampolineX = 300;
-let trampolineY = 400;
 
 function trampoline(trampolineX, trampolineY) {
   push();
