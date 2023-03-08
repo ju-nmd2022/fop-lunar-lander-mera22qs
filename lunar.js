@@ -2,7 +2,7 @@ function setup() {
   let canvas = createCanvas(800, 500);
 }
 
-let state = "fail";
+let state = "start";
 
 /*Background */
 function nature() {
@@ -125,12 +125,24 @@ function butn() {
     mouseX > 540 &&
     mouseX < 540 + 70 &&
     mouseY > 300 &&
-    mouseY < 300 + 30
+    mouseY < 300 + 30 && state === "start"
   ) {
     console.log("Mouse is pressed");
     state = "game";
-  }
-}
+  } else if (    mouseIsPressed &&
+    mouseX > 540 &&
+    mouseX < 540 + 70 &&
+    mouseY > 300 &&
+    mouseY < 300 + 30 && state === "fail"){      console.log("Mouse is pressed");
+       state = "game";}
+       else (    mouseIsPressed &&
+        mouseX > 540 &&
+        mouseX < 540 + 70 &&
+        mouseY > 300 &&
+        mouseY < 300 + 30 && state === "win"){
+          console.log("Mouse is pressed");
+          state = "game";
+       }
 
 /*Start Screen*/
 function startScr() {
@@ -138,7 +150,7 @@ function startScr() {
   infoBox();
   butn();
 }
-/*trampoline / goal*/
+/*trampoline goal*/
 function trampoline() {
   fill(56, 56, 56);
   stroke(40, 40, 40);
@@ -153,8 +165,8 @@ let speed = 2;
 let bunnyX = 0;
 let bunnyY = 0;
 
-let goalX = 600;
-let goalY = 390;
+const goalX = 600;
+const goalY = 390;
 
 /*Character*/
 function bunny(bunnyX, bunnyY) {
@@ -219,12 +231,13 @@ function gameScr() {
     bunnyY = bunnyY + 5;
   }
 
-  if (mouseX > 400) {
-    background(0, 0, 255);
-  } else if (mouseX > 200) {
-    background(0, 255, 0);
-  } else {
-    background(255, 0, 0);
+  if (bunnyY >= goalY) {
+    if (bunnyX <= goalX && bunnyX >= goalX + 100 && speed <= 5) {
+      bunnyY = goalY + 10;
+      state = "win";
+    } else {
+      state = "fail";
+    }
   }
 }
 
