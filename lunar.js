@@ -1,6 +1,9 @@
 function setup() {
-  createCanvas(800, 500);
+  let canvas = createCanvas(800, 500);
 }
+
+let state = "fail";
+
 /*Background */
 function nature() {
   background(212, 126, 151);
@@ -147,8 +150,11 @@ function trampoline() {
 }
 
 let speed = 2;
-let bunnyX = 10;
+let bunnyX = 0;
 let bunnyY = 0;
+
+let goalX = 600;
+let goalY = 390;
 
 /*Character*/
 function bunny(bunnyX, bunnyY) {
@@ -176,6 +182,23 @@ function bunny(bunnyX, bunnyY) {
   );
   pop();
 }
+
+/*Fail Screen*/
+function failScr() {
+  nature();
+  infoBoxFail();
+  butn();
+  sadFace();
+}
+
+/*Winnin Screen*/
+function winScr() {
+  nature();
+  infoBoxWin();
+  butn();
+  happyFace();
+}
+
 /*Game Screen*/
 function gameScr() {
   clear();
@@ -195,34 +218,15 @@ function gameScr() {
   } else if (keyIsDown(40)) {
     bunnyY = bunnyY + 5;
   }
-  /*This part is hard
-  if (bunnyY >= 380) {
-    if (bunnyX >= 600 && bunnyX <= 600 + 100) {
-      state = "win";
-      console.log("You won");
-    } else if (bunnyX <= 5 && bunnyX >= 0 - 5) {
-      state = "fail";
-      console.log("you lose");
-    }
-    
-  }*/
-}
-/*Fail Screen*/
-function failScr() {
-  nature();
-  infoBoxFail();
-  butn();
-  sadFace();
-}
-/*Winnin Screen*/
-function winScr() {
-  nature();
-  infoBoxWin();
-  butn();
-  happyFace();
-}
 
-let state = "start";
+  if (mouseX > 400) {
+    background(0, 0, 255);
+  } else if (mouseX > 200) {
+    background(0, 255, 0);
+  } else {
+    background(255, 0, 0);
+  }
+}
 
 function draw() {
   if (state === "start") {
