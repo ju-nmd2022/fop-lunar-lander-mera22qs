@@ -1,9 +1,6 @@
 function setup() {
-  let canvas = createCanvas(800, 500);
+  createCanvas(800, 500);
 }
-
-let state = "start";
-
 /*Background */
 function nature() {
   background(212, 126, 151);
@@ -125,24 +122,12 @@ function butn() {
     mouseX > 540 &&
     mouseX < 540 + 70 &&
     mouseY > 300 &&
-    mouseY < 300 + 30 && state === "start"
+    mouseY < 300 + 30
   ) {
     console.log("Mouse is pressed");
     state = "game";
-  } else if (    mouseIsPressed &&
-    mouseX > 540 &&
-    mouseX < 540 + 70 &&
-    mouseY > 300 &&
-    mouseY < 300 + 30 && state === "fail"){      console.log("Mouse is pressed");
-       state = "game";}
-       else (    mouseIsPressed &&
-        mouseX > 540 &&
-        mouseX < 540 + 70 &&
-        mouseY > 300 &&
-        mouseY < 300 + 30 && state === "win"){
-          console.log("Mouse is pressed");
-          state = "game";
-       }
+  }
+}
 
 /*Start Screen*/
 function startScr() {
@@ -150,7 +135,7 @@ function startScr() {
   infoBox();
   butn();
 }
-/*trampoline goal*/
+/*trampoline / goal*/
 function trampoline() {
   fill(56, 56, 56);
   stroke(40, 40, 40);
@@ -162,11 +147,8 @@ function trampoline() {
 }
 
 let speed = 2;
-let bunnyX = 0;
+let bunnyX = 10;
 let bunnyY = 0;
-
-const goalX = 600;
-const goalY = 390;
 
 /*Character*/
 function bunny(bunnyX, bunnyY) {
@@ -194,23 +176,6 @@ function bunny(bunnyX, bunnyY) {
   );
   pop();
 }
-
-/*Fail Screen*/
-function failScr() {
-  nature();
-  infoBoxFail();
-  butn();
-  sadFace();
-}
-
-/*Winnin Screen*/
-function winScr() {
-  nature();
-  infoBoxWin();
-  butn();
-  happyFace();
-}
-
 /*Game Screen*/
 function gameScr() {
   clear();
@@ -230,16 +195,34 @@ function gameScr() {
   } else if (keyIsDown(40)) {
     bunnyY = bunnyY + 5;
   }
-
-  if (bunnyY >= goalY) {
-    if (bunnyX <= goalX && bunnyX >= goalX + 100 && speed <= 5) {
-      bunnyY = goalY + 10;
+  /*This part is hard
+  if (bunnyY >= 380) {
+    if (bunnyX >= 600 && bunnyX <= 600 + 100) {
       state = "win";
-    } else {
+      console.log("You won");
+    } else if (bunnyX <= 5 && bunnyX >= 0 - 5) {
       state = "fail";
+      console.log("you lose");
     }
-  }
+    
+  }*/
 }
+/*Fail Screen*/
+function failScr() {
+  nature();
+  infoBoxFail();
+  butn();
+  sadFace();
+}
+/*Winnin Screen*/
+function winScr() {
+  nature();
+  infoBoxWin();
+  butn();
+  happyFace();
+}
+
+let state = "start";
 
 function draw() {
   if (state === "start") {
