@@ -1,6 +1,9 @@
 function setup() {
   createCanvas(800, 500);
 }
+
+let state = "start";
+
 /*Background */
 function nature() {
   background(212, 126, 151);
@@ -36,6 +39,7 @@ function nature() {
   rect(0, 300, 800, 500);
   pop();
 }
+
 /*Sticker of approval */
 function happyFace() {
   fill(0, 199, 20);
@@ -60,6 +64,7 @@ function sadFace() {
   ellipse(550, 250, 10, 10);
   rect(560, 270, 20, 1);
 }
+
 /*Information for the winner */
 function infoBoxWin() {
   fill(255, 255, 255);
@@ -80,7 +85,6 @@ function infoBoxWin() {
 function infoBoxFail() {
   fill(255, 255, 255);
   rect(250, 100 + 50, 400, 200, 20);
-
   fill(0, 0, 0);
   textSize(15);
   text("The bunny tripped and got hurt, better luck next time.", 280, 180, 330);
@@ -91,7 +95,6 @@ function infoBoxFail() {
 function infoBox() {
   fill(255, 255, 255);
   rect(250, 100 + 50, 400, 200, 20);
-
   fill(0, 0, 0);
   textSize(15);
   text(
@@ -135,6 +138,7 @@ function startScr() {
   infoBox();
   butn();
 }
+
 /*trampoline / goal*/
 function trampoline() {
   fill(56, 56, 56);
@@ -147,32 +151,32 @@ function trampoline() {
 }
 
 let speed = 2;
-let bunnyX = 10;
-let bunnyY = 0;
+let bunnyposX = 10;
+let bunnyposY = 0;
 
 /*Character*/
-function bunny(bunnyX, bunnyY) {
+function bunny(bunnyposX, bunnyposY) {
   /*body*/
   push();
-  translate(bunnyX, bunnyY);
+  translate(bunnyposX, bunnyposY);
   fill(232, 232, 232);
-  ellipse(bunnyX + 110, bunnyY + 25, 20, 50);
-  ellipse(bunnyX + 70, bunnyY + 25, 20, 50);
-  ellipse(bunnyX + 60, bunnyY + 100, 80, 70, 70);
-  ellipse(bunnyX + 90, bunnyY + 60, 80, 50);
-  ellipse(bunnyX + 20, bunnyY + 100, 30, 20);
+  ellipse(bunnyposX + 110, bunnyposY + 25, 20, 50);
+  ellipse(bunnyposX + 70, bunnyposY + 25, 20, 50);
+  ellipse(bunnyposX + 60, bunnyposY + 100, 80, 70, 70);
+  ellipse(bunnyposX + 90, bunnyposY + 60, 80, 50);
+  ellipse(bunnyposX + 20, bunnyposY + 100, 30, 20);
 
   /*face*/
   fill(0, 0, 0);
-  ellipse(bunnyX + 110, bunnyY + 60, 5, 10);
-  ellipse(bunnyX + 78, bunnyY + 60, 5, 10);
+  ellipse(bunnyposX + 110, bunnyposY + 60, 5, 10);
+  ellipse(bunnyposX + 78, bunnyposY + 60, 5, 10);
   triangle(
-    bunnyX + 100,
-    bunnyY + 70,
-    bunnyX + 90,
-    bunnyY + 70,
-    bunnyX + 95,
-    bunnyY + 65
+    bunnyposX + 100,
+    bunnyposY + 70,
+    bunnyposX + 90,
+    bunnyposY + 70,
+    bunnyposX + 95,
+    bunnyposY + 65
   );
   pop();
 }
@@ -181,32 +185,34 @@ function gameScr() {
   clear();
   nature();
   trampoline();
-  bunny(bunnyX, bunnyY);
+  bunny(bunnyposX, bunnyposY);
 
-  bunnyY = bunnyY + speed;
-
+  bunnyposY = bunnyposY + speed;
+  console.log("bunnyposX:", bunnyposX);
+  console.log("bunnyposY:", bunnyposY);
+  
   if (keyIsDown(39)) {
-    bunnyX = bunnyX + 5;
+    bunnyposX = bunnyposX + 5;
   } else if (keyIsDown(37)) {
-    bunnyX = bunnyX - 5;
+    bunnyposX = bunnyposX - 5;
   }
   if (keyIsDown(38)) {
-    bunnyY = bunnyY - 10;
+    bunnyposY = bunnyposY - 10;
   } else if (keyIsDown(40)) {
-    bunnyY = bunnyY + 5;
+    bunnyposY = bunnyposY + 5;
   }
+
   /*win or loose function*/
-  if (bunnyY >= 380) {
-    if (bunnyX >= 600 && bunnyX <= 600 + 100) {
+    if (bunnyposX >= 300 && bunnyposX <= 340 && bunnyposY >= 140 && bunnyposY <= 160) {
       state = "win";
       console.log("You won");
-    } else if (bunnyX <= 5 && bunnyX >= 0 - 5) {
+    } else if (bunnyposX >= 0 && bunnyposX <= 500 && bunnyposY >= 150) {
       state = "fail";
       console.log("you lose");
     }
     
   }
-}
+
 /*Fail Screen*/
 function failScr() {
   nature();
@@ -222,7 +228,6 @@ function winScr() {
   happyFace();
 }
 
-let state = "start";
 
 function draw() {
   if (state === "start") {
