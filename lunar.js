@@ -211,7 +211,7 @@ function gameScr() {
     if (bunnyposX >= 300 && bunnyposX <= 340 && bunnyposY >= 140 && bunnyposY <= 160) {
       state = "win";
       console.log("You won");
-    } else if (bunnyposX >= 0 && bunnyposX <= 500 && bunnyposY >= 150) {
+    } else if (bunnyposX >= -55 && bunnyposX <= 500 && bunnyposY >= 150) {
       state = "fail";
       console.log("you lose");
     }
