@@ -155,7 +155,7 @@ function trampoline() {
   ellipse(700, 400, 150, 20);
 }
 
-let speed = 2;
+let speed = 6;
 let bunnyposX = 10;
 let bunnyposY = 0;
 
