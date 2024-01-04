@@ -1,11 +1,10 @@
 /*the canvas was centered with the help of code from github*/
-
-
 html, body {
     height: 100%;
   }
   
   body {
+    background-color: rgb(212, 126, 151);
     margin: 0;
     display: flex;
   
