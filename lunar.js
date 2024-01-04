@@ -195,7 +195,7 @@ function gameScr() {
   } else if (keyIsDown(40)) {
     bunnyY = bunnyY + 5;
   }
-  /*This part is hard
+  /*win or loose function*/
   if (bunnyY >= 380) {
     if (bunnyX >= 600 && bunnyX <= 600 + 100) {
       state = "win";
@@ -205,7 +205,7 @@ function gameScr() {
       console.log("you lose");
     }
     
-  }*/
+  }
 }
 /*Fail Screen*/
 function failScr() {
