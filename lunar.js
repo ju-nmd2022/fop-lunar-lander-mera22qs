@@ -47,16 +47,19 @@ function happyFace() {
   fill(0, 0, 0);
   ellipse(580, 250, 10, 10);
   ellipse(550, 250, 10, 10);
-
+  strokeWeight(1);
   fill(0, 0, 0);
   ellipse(560, 270, 20, 10);
   fill(0, 199, 20);
+  push();
   noStroke();
   ellipse(560, 266, 20, 10);
+  pop();
 }
 
 /*Sticker of disappointment */
 function sadFace() {
+  strokeWeight(1);
   fill(255, 100, 100);
   ellipse(570, 255, 70, 70);
   fill(0, 0, 0);
@@ -69,7 +72,6 @@ function sadFace() {
 function infoBoxWin() {
   fill(255, 255, 255);
   rect(250, 100 + 50, 400, 200, 20);
-  strokeWeight(1);
   fill(0, 0, 0);
   textSize(15);
   text(
@@ -97,6 +99,7 @@ function infoBox() {
   fill(255, 255, 255);
   rect(250, 100 + 50, 400, 200, 20);
   fill(0, 0, 0);
+  strokeWeight(2);
   textSize(15);
   text(
     "Oh no! The bunny jumped to high! Help it land safely on the trampoline.",
@@ -214,6 +217,7 @@ function gameScr() {
     }
     
   }
+
 /*reset the bunny position*/
 function resetBunny(){
 bunnyposX = 10;
