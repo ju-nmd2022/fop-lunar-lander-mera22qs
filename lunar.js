@@ -69,7 +69,7 @@ function sadFace() {
 function infoBoxWin() {
   fill(255, 255, 255);
   rect(250, 100 + 50, 400, 200, 20);
-
+  strokeWeight(1);
   fill(0, 0, 0);
   textSize(15);
   text(
@@ -86,6 +86,7 @@ function infoBoxFail() {
   fill(255, 255, 255);
   rect(250, 100 + 50, 400, 200, 20);
   fill(0, 0, 0);
+  strokeWeight(1);
   textSize(15);
   text("The bunny tripped and got hurt, better luck next time.", 280, 180, 330);
   text("Press play and try again!", 280, 250, 330);
@@ -120,14 +121,15 @@ function butn() {
   textSize(15);
   text("Play", 560, 320);
 
-  if (
-    mouseIsPressed &&
+ 
+  if ( mouseIsPressed &&
     mouseX > 540 &&
     mouseX < 540 + 70 &&
     mouseY > 300 &&
     mouseY < 300 + 30
   ) {
     console.log("Mouse is pressed");
+    clear();
     state = "game";
   }
 }
@@ -212,6 +214,11 @@ function gameScr() {
     }
     
   }
+/*reset the bunny position*/
+function resetBunny(){
+bunnyposX = 10;
+bunnyposY = 0;
+}
 
 /*Fail Screen*/
 function failScr() {
@@ -219,6 +226,7 @@ function failScr() {
   infoBoxFail();
   butn();
   sadFace();
+  resetBunny();
 }
 /*Winnin Screen*/
 function winScr() {
@@ -226,7 +234,9 @@ function winScr() {
   infoBoxWin();
   butn();
   happyFace();
+  resetBunny();
 }
+
 
 
 function draw() {
